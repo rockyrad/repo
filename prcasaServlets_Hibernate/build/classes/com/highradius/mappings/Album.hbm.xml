@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2015 12:27:36 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.highradius.pojo.Album" table="album">
+        <id name="albumId" type="int">
+            <column name="album_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="albumName" type="java.lang.String">
+            <column name="album_name" />
+        </property>
+        <property name="createUserId" type="java.lang.Integer">
+            <column name="create_user_id" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" />
+        </property>
+        <property name="createtime" type="java.util.Date">
+            <column name="create_time" />
+        </property>
+        <property name="updateUser" type="java.lang.String">
+            <column name="update_user" />
+        </property>
+        <property name="updatetime" type="java.util.Date">
+            <column name="update_time" />
+        </property>
+    </class>
+</hibernate-mapping>

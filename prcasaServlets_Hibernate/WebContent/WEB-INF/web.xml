@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>hrcasa</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+    <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.highradius.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginActionServlet</servlet-name>
+    <servlet-class>com.highradius.LoginActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginActionServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>registrationaction</servlet-name>
+    <servlet-class>com.highradius.RegistrationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>registrationaction</servlet-name>
+    <url-pattern>/registration</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>createalbum</servlet-name>
+    <servlet-class>com.highradius.CreateAlbumServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createalbum</servlet-name>
+    <url-pattern>/create</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>deletealbum</servlet-name>
+    <servlet-class>com.highradius.DeleteAlbumServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deletealbum</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>viewalbum</servlet-name>
+    <servlet-class>com.highradius.AlbumViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewalbum</servlet-name>
+    <url-pattern>/viewalbum</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>sharealbum</servlet-name>
+    <servlet-class>com.highradius.AlbumShareServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sharealbum</servlet-name>
+    <url-pattern>/sharealbum</url-pattern>
+  </servlet-mapping>
+  
+  
+     <servlet>
+    <servlet-name>homepage</servlet-name>
+    <servlet-class>com.highradius.HomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>homepage</servlet-name>
+    <url-pattern>/homepage</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>

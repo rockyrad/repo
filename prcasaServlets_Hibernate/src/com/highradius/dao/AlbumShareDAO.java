@@ -1,11 +1,11 @@
 package com.highradius.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.highradius.model.AlbumShare;
+import com.highradius.util.DbUtil;
 
 public class AlbumShareDAO {
 
@@ -40,13 +40,13 @@ public class AlbumShareDAO {
 		Connection con = null;
 		int flag=0;
 		String query = "insert into album_share values(?,?)";
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		PreparedStatement pstmt = null;
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, albumshare.getAlbum_id());
-			pstmt.setString(2, albumshare.getUser_id());
+			pstmt.setInt(1, albumshare.getAlbumId());
+			pstmt.setString(2, albumshare.getUserId());
 			flag = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {

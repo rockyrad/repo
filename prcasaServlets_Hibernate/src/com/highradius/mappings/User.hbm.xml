@@ -3,28 +3,28 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 20, 2015 12:27:36 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.highradius.pojo.User" table="USER">
-        <id name="userId" type="java.lang.String">
-            <column name="USERID" />
+    <class name="com.highradius.pojo.User" table="user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
             <generator class="assigned" />
         </id>
         <property name="name" type="java.lang.String">
-            <column name="NAME" />
+            <column name="name" />
         </property>
         <property name="password" type="java.lang.String">
-            <column name="PASSWORD" />
+            <column name="password" />
         </property>
         <property name="createUser" type="java.lang.String">
-            <column name="CREATEUSER" />
+            <column name="create_user" />
         </property>
         <property name="createtime" type="java.util.Date">
-            <column name="CREATETIME" />
+            <column name="create_time" />
         </property>
         <property name="updateUser" type="java.lang.String">
-            <column name="UPDATEUSER" />
+            <column name="update_user" />
         </property>
         <property name="updatetime" type="java.util.Date">
-            <column name="UPDATETIME" />
+            <column name="update_time" />
         </property>
     </class>
 </hibernate-mapping>

@@ -10,13 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.apache.commons.io.FileUtils;
 
 import com.highradius.dao.AlbumDAO;
-import com.highradius.dao.PhotosDAO;
 import com.highradius.model.Album;
-import com.highradius.model.Photos;
-import com.highradius.model.User;
 
 public class DeleteAlbumServlet extends HttpServlet {
 
@@ -34,7 +31,7 @@ public class DeleteAlbumServlet extends HttpServlet {
 		String userid = (String) session.getAttribute("userid");
 		int albumid = Integer.parseInt(request.getParameter("albumid"));
 		Album album = new Album();
-		album.setAlbum_id(albumid);
+		album.setAlbumId(albumid);
 		RequestDispatcher rd2= null;
 		if (userid == null) {
 			System.out.print("session has expired .Redirected to login page");
@@ -48,7 +45,7 @@ public class DeleteAlbumServlet extends HttpServlet {
 		Album verifyalbum = new Album();
 		
 		verifyalbum = AlbumDAO.displayAlbum(album);
-		if(userid.equals(verifyalbum.getCreate_user_id()))
+		if(userid.equals(verifyalbum.getCreateUserId()))
 		{
 		File file = new File(HrCasa.root_directory +"/"+ albumid );
 		boolean status = false;
@@ -76,7 +73,7 @@ public class DeleteAlbumServlet extends HttpServlet {
 					
 				else{
 					Album newalbum = new Album();
-					newalbum.setAlbum_id(albumid);
+					newalbum.setAlbumId(albumid);
 					AlbumDAO.deleteAlbum(newalbum);
 					rd1 = request.getRequestDispatcher("DeleteAlbum.jsp?message='pass'");
 					try {
@@ -100,7 +97,7 @@ public class DeleteAlbumServlet extends HttpServlet {
 		
 		else{
 			Album valbum = new Album();
-			valbum.setAlbum_id(albumid);
+			valbum.setAlbumId(albumid);
 			
 			rd2 = request.getRequestDispatcher("DeleteAlbum.jsp?message='Not Authenticated'");
 			try {

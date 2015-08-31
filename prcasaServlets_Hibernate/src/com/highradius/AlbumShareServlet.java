@@ -37,8 +37,8 @@ public class AlbumShareServlet extends HttpServlet {
 		int albumid = Integer.parseInt(albumnum);
 		AlbumShare albumshare =new AlbumShare();
 		
-		albumshare.setAlbum_id(albumid);
-		albumshare.setUser_id(shareduser);
+		albumshare.setAlbumId(albumid);
+		albumshare.setUserId(shareduser);
 		
 		int flag = AlbumShareDAO.shareAlbum(albumshare);
 		if(flag!=0)

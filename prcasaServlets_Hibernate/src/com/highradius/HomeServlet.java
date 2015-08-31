@@ -34,7 +34,7 @@ public class HomeServlet extends HttpServlet {
 
 		session = request.getSession(true);
 
-		String userid = (String) session.getAttribute("userid");
+		Integer userid = (Integer) session.getAttribute("userid");
 
 		if (userid == null) {
 
@@ -48,7 +48,7 @@ public class HomeServlet extends HttpServlet {
 		}
 
 		User user = new User();
-		user.setUserid(userid);
+		user.setUserId(userid);
 
 		List<Album> albumslist = new ArrayList<Album>();
 

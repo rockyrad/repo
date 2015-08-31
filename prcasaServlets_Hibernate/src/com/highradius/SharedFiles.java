@@ -41,7 +41,7 @@ public class SharedFiles {
 			
 			while (resultset.next()) {
 				Album album = new Album();
-				album.setAlbum_id(resultset.getInt("album_id"));
+				album.setAlbumId(resultset.getInt("album_id"));
 				albumslist.add(album);
 			}
 			

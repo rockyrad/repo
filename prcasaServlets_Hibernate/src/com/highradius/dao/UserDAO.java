@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.highradius.model.User;
+import com.highradius.util.DbUtil;
 
 public class UserDAO {
 
@@ -46,11 +47,11 @@ public class UserDAO {
 		String query = "insert into user(user_id,name,password) values(?,?,?)";
 		int rows = 0;
 		try {
-			con = DbUtility.connectToDB();
+			con = DbUtil.connectToDB();
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, user.getUserid());
+			pstmt.setInt(1, user.getUserId());
 			pstmt.setString(2, user.getName());
-			pstmt.setString(3, user.getPwd());
+			pstmt.setString(3, user.getPassword());
 			rows = pstmt.executeUpdate();
 
 			System.out.println(query + "\n\n");
@@ -65,7 +66,7 @@ public class UserDAO {
 		}
 
 		finally {
-			DbUtility.closeConnection(rs, null, pstmt, con);
+			DbUtil.closeConnection(rs, null, pstmt, con);
 		}
 		return rows;
 	}
@@ -74,7 +75,7 @@ public class UserDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		ResultSet rs = null;
 		String query ="select * from user";
 		List<User> users = new ArrayList<User>();
@@ -86,16 +87,16 @@ public class UserDAO {
 
 			while (rs.next()) {
 				User user = new User();
-				user.setUserid(rs.getString("userid"));
+				user.setUserId(Integer.parseInt(rs.getString("userid")));
 				user.setName(rs.getString("name"));
-				user.setPwd(rs.getString("password"));
+				user.setPassword(rs.getString("password"));
 				users.add(user);
 			}
 
 		} catch (SQLException e) {
 
 		} finally {
-			DbUtility.closeConnection(rs, null, pstmt, con);			
+			DbUtil.closeConnection(rs, null, pstmt, con);			
 		}
 
 		return users;
@@ -116,8 +117,8 @@ public class UserDAO {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, givenuser.getUserid().trim());
-			pstmt.setString(2, givenuser.getPwd());
+			pstmt.setInt(1, givenuser.getUserId());
+			pstmt.setString(2, givenuser.getPassword());
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -130,7 +131,7 @@ public class UserDAO {
 		}
 
 		finally {
-			DbUtility.closeConnection(rs, null, pstmt, con);			
+			DbUtil.closeConnection(rs, null, pstmt, con);			
 		}
 		return flag;
 	}

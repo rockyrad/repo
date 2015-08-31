@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.highradius.model.Album;
 import com.highradius.model.User;
+import com.highradius.util.DbUtil;
 
 public class AlbumDAO {
 
@@ -17,10 +19,10 @@ public class AlbumDAO {
 	public static Album displayAlbum(Album givenalbum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		ResultSet rs = null;
 		Album album = new Album();
-		String query = "select * from album where album_id = '"+ givenalbum.getAlbum_id() + "'";
+		String query = "select * from album where album_id = '"+ givenalbum.getAlbumId() + "'";
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -30,10 +32,10 @@ public class AlbumDAO {
 
 			while (rs.next()) {
 
-				album.setAlbum_id(rs.getInt("album_id"));
-				album.setAlbum_name(rs.getString("album_name"));
-				album.setCreate_user_id(rs.getString("create_user_id"));
-				album.setCreate_time(rs.getString("create_time"));
+				album.setAlbumId(rs.getInt("album_id"));
+				album.setAlbumName(rs.getString("album_name"));
+				album.setCreateUserId(Integer.parseInt(rs.getString("create_user_id")));
+				album.setCreatetime(new Date(rs.getString("create_time")));
 
 			}
 		} catch (SQLException e) {
@@ -51,27 +53,27 @@ public class AlbumDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		ResultSet rs = null;
 
 		List<Album> albumslist = new ArrayList<Album>();
 
 		String query = "SELECT * FROM album WHERE album_id IN (SELECT album_id FROM album WHERE create_user_id = ? UNION SELECT album_id FROM album_share WHERE user_id=?)";
-		String query1 = "select * from album where create_user_id = '"+ givenuser.getUserid() + "'";
+		String query1 = "select * from album where create_user_id = '"+ givenuser.getUserId() + "'";
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, givenuser.getUserid());
-			pstmt.setString(2, givenuser.getUserid());
+			pstmt.setInt(1, givenuser.getUserId());
+			pstmt.setInt(2, givenuser.getUserId());
 			System.out.println(query);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Album album = new Album();
-				album.setAlbum_id(rs.getInt("album_id"));
-				album.setAlbum_name(rs.getString("album_name"));
-				album.setCreate_user_id(rs.getString("create_user_id"));
-				album.setCreate_time(rs.getString("create_time"));
+				album.setAlbumId(rs.getInt("album_id"));
+				album.setAlbumName(rs.getString("album_name"));
+				album.setCreateUser(rs.getString("create_user_id"));
+				album.setCreatetime(new Date(rs.getString("create_time")));
 				albumslist.add(album);
 			}
 		} catch (SQLException e) {
@@ -93,7 +95,7 @@ public class AlbumDAO {
 		String mid;
 		int album_id=1;
 		PreparedStatement pstmt = null;
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		ResultSet rs = null;
 		
 		String query = "select max(album_id) album_id from album";
@@ -127,7 +129,7 @@ public class AlbumDAO {
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		ResultSet rs = null;
 		String query = "select max(album_id) album_id from album";
 		int albumid=0;
@@ -156,9 +158,9 @@ public class AlbumDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		int flag=0;
-		System.out.println("User ID :" + album.getCreate_user_id());
+		System.out.println("User ID :" + album.getCreateUserId());
 
 		String query = "INSERT INTO album(album_name,create_user_id,create_time)VALUES(?,?,?)";
 		//String query1 = "INSERT INTO album VALUES(?,?,?,?)";
@@ -166,9 +168,9 @@ public class AlbumDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 //			pstmt.setInt(1, albumIdGenerator());
-			pstmt.setString(1,album.getAlbum_name());
-			pstmt.setString(2,album.getCreate_user_id());
-			pstmt.setString(3,album.getCreate_time());
+			pstmt.setString(1,album.getAlbumName());
+			pstmt.setInt(2,album.getCreateUserId());
+			pstmt.setDate(3,new java.sql.Date(Long.parseLong(album.getCreatetime().toString())));
 			flag =pstmt.executeUpdate();
 			
 			System.out.println("No.of rows executed :"+flag);
@@ -178,7 +180,7 @@ public class AlbumDAO {
 		System.out.println("Exception in createAlbum(...)");
 			e.printStackTrace();
 		} finally {
-			DbUtility.closeConnection(null, null, pstmt, con);
+			DbUtil.closeConnection(null, null, pstmt, con);
 		}
 
 		return flag;
@@ -191,21 +193,21 @@ public class AlbumDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		con = DbUtility.connectToDB();
+		con = DbUtil.connectToDB();
 		int flag=0;
 
 		String query = "delete from album where album_id=?";
 		System.out.println("Query is : " + query);
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, album.getAlbum_id());
+			pstmt.setInt(1, album.getAlbumId());
 			flag = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 		System.out.println("Exception in deleteAlbum(...)");
 		e.printStackTrace();
 		} finally {
-			DbUtility.closeConnection(null, null, pstmt, con);
+			DbUtil.closeConnection(null, null, pstmt, con);
 		}
 
 		return flag;

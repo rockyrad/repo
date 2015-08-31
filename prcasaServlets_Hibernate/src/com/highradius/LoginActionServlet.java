@@ -28,15 +28,15 @@ public class LoginActionServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		
-		String userid = request.getParameter("userid");		
+		Integer userid = Integer.parseInt(request.getParameter("userid"));		
 		String pwd = request.getParameter("pwd");
 		
 		RequestDispatcher rd = null;
 		HttpSession session =null;
 		
 		User user = new User();
-		user.setUserid(userid);
-		user.setPwd(pwd);
+		user.setUserId(userid);
+		user.setPassword(pwd);
 				
 		boolean flag=false;
 		

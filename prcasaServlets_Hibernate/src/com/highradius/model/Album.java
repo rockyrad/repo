@@ -12,6 +12,7 @@ public class Album implements Serializable{
 	private static final long serialVersionUID = 135260818615132716L;
 	private int albumId;;
 	private String albumName;
+	private int createUserId;
 	
 	
 	private String createUser;
@@ -31,6 +32,12 @@ public class Album implements Serializable{
 	}
 	public void setAlbumName(String albumName) {
 		this.albumName = albumName;
+	}
+	public int getCreateUserId() {
+		return createUserId;
+	}
+	public void setCreateUserId(int createUserId) {
+		this.createUserId = createUserId;
 	}
 	public String getCreateUser() {
 		return createUser;

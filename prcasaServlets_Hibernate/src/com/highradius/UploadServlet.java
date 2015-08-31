@@ -1,10 +1,12 @@
 package com.highradius;
 
 // Import required java libraries
-import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +19,9 @@ import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.highradius.HrCasa;
-import com.highradius.dao.AlbumDAO;
-import com.highradius.dao.PhotosDAO;
+import com.highradius.dao.PhotoDAO;
 import com.highradius.model.Album;
-import com.highradius.model.Photos;
+import com.highradius.model.Photo;
 import com.highradius.model.User;
 
 public class UploadServlet extends HttpServlet {
@@ -39,7 +39,7 @@ public class UploadServlet extends HttpServlet {
 		int count = 0;
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
-		String userid = (String) session.getAttribute("userid"); // getting
+		Integer userid = (Integer) session.getAttribute("userid"); // getting
 																	// session
 																	// attribute
 		
@@ -57,14 +57,14 @@ public class UploadServlet extends HttpServlet {
 
 		Album album = new Album();
 
-		List<Photos> photoslist = new ArrayList<Photos>();
+		List<Photo> photoslist = new ArrayList<Photo>();
 		response.setContentType("text/html");
 
 		int albumid = (Integer) session.getAttribute("albumid");
-		album.setAlbum_id(albumid);
+		album.setAlbumId(albumid);
 		
 		User user = new User();
-		user.setUserid(userid);
+		user.setUserId(userid);
 		PrintWriter out = null;
 
 		try {
@@ -144,10 +144,10 @@ public class UploadServlet extends HttpServlet {
 					}
 					fi.write(file);
 					
-					Photos photo = new Photos();
-					photo.setPhoto_name(fileName);
-					photo.setAlbum_id(albumid);
-					photo.setPhoto_path(albumid + "/" + fileName);
+					Photo photo = new Photo();
+					photo.setPhotoName(fileName);
+					photo.setAlbumId(albumid);
+					photo.setPhotoPath(albumid + "/" + fileName);
 					photoslist.add(photo);
 					
 					out.println("Uploaded Filename: " + fileName + "<br>");
@@ -155,7 +155,7 @@ public class UploadServlet extends HttpServlet {
 				} 
 			}
 			
-			PhotosDAO.storePhotos(photoslist);
+			PhotoDAO.storePhoto(photoslist);
 			
 			out.println("</body>");
 			out.println("</html>");

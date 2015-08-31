@@ -9,19 +9,22 @@
             <generator class="assigned" />
         </id>
         <property name="albumName" type="java.lang.String">
-            <column name="ALBUMNAME" />
+            <column name="album_name" />
+        </property>
+        <property name="createUserId" type="java.lang.Integer">
+            <column name="create_user_id" />
         </property>
         <property name="createUser" type="java.lang.String">
-            <column name="CREATEUSER" />
+            <column name="create_user" />
         </property>
         <property name="createtime" type="java.util.Date">
-            <column name="CREATETIME" />
+            <column name="create_time" />
         </property>
         <property name="updateUser" type="java.lang.String">
-            <column name="UPDATEUSER" />
+            <column name="update_user" />
         </property>
         <property name="updatetime" type="java.util.Date">
-            <column name="UPDATETIME" />
+            <column name="update_time" />
         </property>
     </class>
 </hibernate-mapping>

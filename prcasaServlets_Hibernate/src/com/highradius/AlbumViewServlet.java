@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.highradius.dao.PhotosDAO;
+import com.highradius.dao.PhotoDAO;
 import com.highradius.model.Album;
-import com.highradius.model.Photos;
+import com.highradius.model.Photo;
 
 public class AlbumViewServlet extends HttpServlet{
 
@@ -45,9 +45,9 @@ public class AlbumViewServlet extends HttpServlet{
 				e.printStackTrace();
 			}
 		
-			album.setAlbum_id(albumid);
+			album.setAlbumId(albumid);
 						
-			List<Photos> photoslist = PhotosDAO.displayPhotos(album);
+			List<Photo> photoslist = PhotoDAO.displayPhoto(album);
 			
 			if(photoslist.isEmpty())
 			{

@@ -23,12 +23,12 @@ public class RegistrationServlet extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("pwd");
-		String userid = request.getParameter("userid");
+		Integer userid = Integer.parseInt(request.getParameter("userid"));
 
 		User user = new User();
 		user.setName(username);
-		user.setPwd(password);																//assigning user details
-		user.setUserid(userid);
+		user.setPassword(password);																//assigning user details
+		user.setUserId(userid);
 		boolean flag = UserDAO.selectUser(user);
 
 		if (flag) {
@@ -42,9 +42,9 @@ public class RegistrationServlet extends HttpServlet {
 
 		} else {
 
-			user.setUserid(userid);
+			user.setUserId(userid);
 			user.setName(username);
-			user.setPwd(password);
+			user.setPassword(password);
 
 			System.out.println(username + password + userid);
 

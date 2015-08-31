@@ -1,30 +1,18 @@
 package com.highradius;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.highradius.dao.AlbumDAO;
-import com.highradius.dao.PhotosDAO;
 import com.highradius.model.Album;
-import com.highradius.model.Photos;
 import com.highradius.model.User;
 
 public class CreateAlbumServlet extends HttpServlet {
@@ -41,7 +29,7 @@ public class CreateAlbumServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
-		String userid = (String) session.getAttribute("userid");
+		Integer userid = (Integer) session.getAttribute("userid");
 		if (userid == null) {
 			System.out.print("session has expired .Redirected to login page");
 			try {
@@ -53,7 +41,7 @@ public class CreateAlbumServlet extends HttpServlet {
 		} else {
 
 			User user = new User();
-			user.setUserid(userid);
+			user.setUserId(userid);
 
 			String albumname = request.getParameter("albumname");
 			System.out.println(albumname);
@@ -62,9 +50,9 @@ public class CreateAlbumServlet extends HttpServlet {
 
 			Album album = new Album();
 
-			album.setCreate_time(dateFormat.format(date).toString());
-			album.setCreate_user_id(user.getUserid());
-			album.setAlbum_name(albumname);
+			album.setCreatetime(new Date(dateFormat.format(date)));
+			album.setCreateUserId(user.getUserId());
+			album.setAlbumName(albumname);
 
 			int flag = AlbumDAO.createAlbum(album);
 			int albumid = AlbumDAO.getAlbumId();

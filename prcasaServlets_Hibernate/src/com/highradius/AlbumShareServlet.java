@@ -17,7 +17,7 @@ public class AlbumShareServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		
-		HttpSession sessions = request.getSession();
+		HttpSession session = request.getSession();
 		
 		String userid =(String)session.getAttribute("userid"); 				//getting session attribute 
 		

@@ -28,14 +28,20 @@ public class LoginActionServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		
-		Integer userid = Integer.parseInt(request.getParameter("userid"));		
+		String userId = request.getParameter("userid");		
 		String pwd = request.getParameter("pwd");
+		
+		
+		
+		UserDAO userDao = new UserDAO();
+		Integer userID = userDao.getUserId(request.getParameter("userid"));
+		
 		
 		RequestDispatcher rd = null;
 		HttpSession session =null;
 		
 		User user = new User();
-		user.setUserId(userid);
+		user.setUserId(userID);
 		user.setPassword(pwd);
 				
 		boolean flag=false;
@@ -56,7 +62,7 @@ public class LoginActionServlet extends HttpServlet {
 			List<Album> albumslist = new ArrayList<Album>();
 			albumslist = AlbumDAO.displayAlbums(user);
 			session = request.getSession(true);
-			session.setAttribute("userid", userid);						//Here we are setting session to user logged id		
+			session.setAttribute("userid", userId);						//Here we are setting session to user logged id		
 			session.setAttribute("albumslist",albumslist);
 			
 			rd = request.getRequestDispatcher("HomePage.jsp");		// here dispatching to home page with user's details to be displayed in homepage
@@ -92,6 +98,81 @@ public class LoginActionServlet extends HttpServlet {
 			
 		}
 		
+	}
+	
+	
+	
+	public String execute() throws Exception {
+
+		String userId = request.getParameter("userid");		
+		String pwd = request.getParameter("pwd");
+		
+		UserDAO userDao = new UserDAO();
+		Integer userID = userDao.getUserId(request.getParameter("userid"));
+		
+		RequestDispatcher rd = null;
+		HttpSession session =null;
+		
+		User user = new User();
+		user.setUserId(userID);
+		user.setPassword(pwd);
+				
+		boolean flag=false;
+		
+		try {
+			
+			out = response.getWriter();
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+											
+		flag = UserDAO.selectUser(user);											// performing login validation	
+		
+		if (flag) {
+		
+			List<Album> albumslist = new ArrayList<Album>();
+			albumslist = AlbumDAO.displayAlbums(user);
+			session = request.getSession(true);
+			session.setAttribute("userid", userId);						//Here we are setting session to user logged id		
+			session.setAttribute("albumslist",albumslist);
+			
+			rd = request.getRequestDispatcher("HomePage.jsp");		// here dispatching to home page with user's details to be displayed in homepage
+
+			
+			try {
+
+				rd.forward(request, response);
+
+			
+			} catch (ServletException e) {
+
+				e.printStackTrace();
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+	
+		}
+		
+		else {
+			
+			System.out.print("No user available.Redirected to login page");
+			try {
+
+				response.sendRedirect("index.jsp?message='fail'");
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			
+		}
+		
+	
+		return "";
 	}
 
 }

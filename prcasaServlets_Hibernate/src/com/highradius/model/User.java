@@ -12,6 +12,7 @@ public class User implements Serializable {
 	private Integer userId;
 	private String name;
 	private String password;
+	private String emailId;
 	
 	private String createUser;
 	private Date createtime;
@@ -27,6 +28,12 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 	
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 	public String getName() {
 		return name;
 	}

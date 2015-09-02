@@ -3,13 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 20, 2015 12:27:36 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.highradius.pojo.AlbumShare" table="album_share">
-        <id name="userId" type="java.lang.String">
-            <column name="user_id" />
-            <generator class="assigned" />
+    <class name="com.highradius.model.AlbumShare" table="album_share">
+        <id name="albumId" type="java.lang.Integer">
+            <column name="albumId" />
         </id>
-        <property name="albumId" type="int">
-            <column name="album_id" />
+        <property name="userId" type="java.lang.Integer">
+            <column name="user_id" />
         </property>
         <property name="createUser" type="java.lang.String">
             <column name="create_user" />

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 20, 2015 12:27:36 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.highradius.pojo.Photo" table="photo">
+    <class name="com.highradius.model.Photo" table="photo">
         <id name="photoId" type="int">
             <column name="photo_id" />
             <generator class="assigned" />

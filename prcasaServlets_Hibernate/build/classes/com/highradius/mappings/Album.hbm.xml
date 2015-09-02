@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 20, 2015 12:27:36 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.highradius.pojo.Album" table="album">
+    <class name="com.highradius.model.Album" table="album">
         <id name="albumId" type="int">
             <column name="album_id" />
             <generator class="assigned" />

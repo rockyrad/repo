@@ -9,8 +9,8 @@ public class AlbumShare implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1717930425850270658L;
-	private int albumId;
-	private String userId;
+	private Integer albumId;
+	private Integer userId;
 	
 	private String createUser;
 	private Date createtime;
@@ -24,10 +24,10 @@ public class AlbumShare implements Serializable{
 	public void setAlbumId(int albumId) {
 		this.albumId = albumId;
 	}
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	public String getCreateUser() {

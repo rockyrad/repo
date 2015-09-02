@@ -5,7 +5,7 @@
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login Form</title>
+<!-- <title>Login Form</title> -->
 
 <!--STYLESHEETS-->
 <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -68,7 +68,7 @@ $(document).ready(function() {
 
 <!--WRAPPER-->
 <div id="wrapper">
-<center><font size=7>HR Casa</font></center>
+<!-- <center><font size=7>HR Casa</font></center> -->
 
 	<!--SLIDE-IN ICONS-->
     <div class="user-icon"></div>
@@ -81,8 +81,12 @@ $(document).ready(function() {
 
 	<!--HEADER-->
     <div class="header">
-    <!--TITLE--><h1>Login Form</h1><!--END TITLE-->
-    <!--DESCRIPTION--><span>A photo uploading tool</span><!--END DESCRIPTION-->
+    <!--TITLE-->
+    <!-- <h1>Login Form</h1> -->
+    <!--END TITLE-->
+    <!--DESCRIPTION-->
+    <!-- <span>A photo uploading tool</span> -->
+    <!--END DESCRIPTION-->
     </div>
     <!--END HEADER-->
 	

@@ -8,11 +8,48 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+
 import com.highradius.model.User;
 import com.highradius.util.DbUtil;
 
 public class UserDAO {
 
+	
+	
+	
+	
+
+	/**
+	 * Hibernate Starts Here 
+	 */
+	
+	public User getUser(String emailId){
+		
+		DetachedCriteria dCriteria = DetachedCriteria.forClass(User.class);
+		dCriteria.add(Restrictions.eq(emailId, emailId));
+		User user = (User)dCriteria.getExecutableCriteria(DbUtil.getSessionFactory().getCurrentSession()).uniqueResult();
+		return user;
+	}
+	
+	public Integer getUserId(String emailId){
+		
+		DetachedCriteria dCriteria = DetachedCriteria.forClass(User.class);
+		dCriteria.add(Restrictions.eq(emailId, emailId));
+		dCriteria.setProjection(Projections.property("userId"));
+		return (Integer)dCriteria.getExecutableCriteria(DbUtil.getSessionFactory().getCurrentSession()).uniqueResult();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static Connection connectToDB(String database) {
 		Connection con = null;
 
@@ -136,4 +173,7 @@ public class UserDAO {
 		return flag;
 	}
 
+	
+	
+	
 }

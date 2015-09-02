@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 20, 2015 12:27:36 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.highradius.pojo.User" table="user">
+    <class name="com.highradius.model.User" table="user">
         <id name="userId" type="java.lang.Integer">
             <column name="user_id" />
             <generator class="assigned" />
@@ -13,6 +13,9 @@
         </property>
         <property name="password" type="java.lang.String">
             <column name="password" />
+        </property>
+        <property name="emailId" type="java.lang.String">
+            <column name="email_id" />
         </property>
         <property name="createUser" type="java.lang.String">
             <column name="create_user" />

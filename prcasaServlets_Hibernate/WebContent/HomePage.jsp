@@ -101,7 +101,7 @@ Album that you can view and share
 <table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
 			<tbody>
 
-<%@ page language="java" import="com.highradius.pojo.Album,java.util.List,java.util.ArrayList"%>
+<%@ page language="java" import="com.highradius.model.Album,java.util.List,java.util.ArrayList"%>
 <%@ page language="java" import="java.util.Iterator"%>
 <% 
 String userid=(String)session.getAttribute("userid");
@@ -121,11 +121,11 @@ while(iterator.hasNext())
 %>	
 <tr>
 
-	<td><a href = "viewalbum?albumid=<%= album.getAlbum_id()%>"><%= album.getAlbum_name()%></a></td>
-	<td><font size="2"><%= album.getCreate_user_id()%>
+	<td><a href = "viewalbum?albumid=<%= album.getAlbumId()%>"><%= album.getAlbumName()%></a></td>
+	<td><font size="2"><%= album.getCreateUserId()%>
 	</font></td>
-	<td><font size="2"><%= album.getCreate_time()%></font></td>
-	<td><input type="button" name="share" value="share" style="float: right;" onclick="document.location='sharepage.jsp?albumid=<%= album.getAlbum_id()%>'"></td>
+	<td><font size="2"><%= album.getCreatetime()%></font></td>
+	<td><input type="button" name="share" value="share" style="float: right;" onclick="document.location='sharepage.jsp?albumid=<%= album.getAlbumId()%>'"></td>
 </tr>
 
 <%

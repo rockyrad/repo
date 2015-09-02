@@ -19,7 +19,7 @@
 		</td>
 		</tr>
 			<tr>
-				<%@ page language="java" import="com.highradius.pojo.com.highradius.pojo.Photo,java.util.Iterator,java.util.List"%>
+				<%@ page language="java" import="com.highradius.model.Photo,java.util.Iterator,java.util.List"%>
 
 				<%
 					String userid = (String) session.getAttribute("userid");
@@ -45,15 +45,15 @@
 
 							while (iterator.hasNext()) {
 								photo = (Photo) iterator.next();
-								photo.getPhoto_id();
-								photo.getAlbum_id();
-								photo.getPhoto_name();
+								photo.getPhotoId();
+								photo.getAlbumId();
+								photo.getPhotoName();
 				%>
 				<td align="center"><img
-					src="/photos/<%=photo.getAlbum_id()%>/<%=photo.getPhoto_name()%>"
-					alt="<%=photo.getPhoto_name()%>" border="2" height="80" width="80">
+					src="/photos/<%=photo.getAlbumId()%>/<%=photo.getPhotoName()%>"
+					alt="<%=photo.getPhotoName()%>" border="2" height="80" width="80">
 				</td>
-				<td>id:&nbsp;&nbsp;&nbsp;&nbsp;<font size="2"><%=photo.getAlbum_id()%> <br/><%=photo.getPhoto_name()%></font></td>
+				<td>id:&nbsp;&nbsp;&nbsp;&nbsp;<font size="2"><%=photo.getAlbumId()%> <br/><%=photo.getPhotoName()%></font></td>
 			</tr>
 			<%
 				}
